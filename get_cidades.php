@@ -7,7 +7,7 @@ if (!isset($_GET['estado_id'])) {
     exit;
 }
 
-$estadoId = (int)$_GET['estado_id'];
+$estadoId = $_GET['estado_id'];
 
 // Conexão com o banco de dados (mesma configuração do get_estados.php)
 $host = 'localhost';
@@ -23,7 +23,7 @@ try {
 }
 
 // Consulta para obter as cidades do estado selecionado
-$query = "SELECT id, nome FROM cidades WHERE estado_id = :estado_id ORDER BY nome";
+$query = "SELECT id, nome FROM cidades WHERE id_estado = :estado_id ORDER BY nome";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':estado_id', $estadoId, PDO::PARAM_INT);
 $stmt->execute();
